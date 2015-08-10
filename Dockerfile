@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install -qy apache2 curl libjansson4 && \
     /root/build-oidc.sh && \
     mkdir -p /etc/service/apache2/supervise && \
+    mkdir /app && \
     apt-get -yq autoremove && \
     apt-get -yq clean && \
     rm -rf /var/lib/apt/lists/* && \
