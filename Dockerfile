@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ADD build-oidc.sh setup-apache.sh /root/
 
 RUN apt-get update && \
-    apt-get install -qy apache2 curl libcurl4 libjansson4 && \
+    apt-get install -qy apache2 curl libjansson4 && \
     /root/build-oidc.sh && \
     mkdir -p /etc/service/apache2/supervise && \
     apt-get -yq autoremove && \

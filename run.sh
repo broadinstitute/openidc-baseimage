@@ -2,6 +2,8 @@
 
 set -e
 
+export LANG=C
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export TZ=America/New_York
 
 # update ClientID
@@ -37,7 +39,7 @@ fi
 # update OIDC_CLAIM
 if [ -z "$OIDC_CLAIM" ] ; then
     export OIDC_CLAIM='Require claim hd:broadinstitute.org'
-elif [ "$OIDC_CLAIM" == "(none)" ]; then
+elif [ "$OIDC_CLAIM" == '(none)' ]; then
     export OIDC_CLAIM=
 fi
 
@@ -74,4 +76,4 @@ fi
 # Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid
 
-exec /usr/sbin/apache2 -DNO_DETACH -DFOREGROUND 2>&1
+exec /usr/sbin/apachectl -DNO_DETACH -DFOREGROUND 2>&1
