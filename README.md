@@ -1,7 +1,7 @@
 openidc-baseimage
 =================
-
-[![Docker Hub](http://img.shields.io/badge/docker-hub-brightgreen.svg?style=flat)](https://registry.hub.docker.com/u/broadinstitute/openidc-baseimage/)
+[![](https://badge.imagelayers.io/broadinstitute/openidc-baseimage:latest.svg)](https://imagelayers.io/?images=broadinstitute/openidc-baseimage:latest 'Get your own badge on imagelayers.io')
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/u/broadinstitute/openidc-baseimage/)
 
 # An Apache baseimage containing OpenIDC
 This repo contains the configuration for a Docker image, based on [Phusion Baseimage][1] which has [Apache][2] installed including Ping Identity's [mod_auth_openidc][3] OpenIDC module.
