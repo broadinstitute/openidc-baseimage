@@ -2,7 +2,13 @@
 
 set -e
 
-echo "Building mod_auth_openidc from source"
+BRANCH='master'
+if [ -n "${1}" ];
+    then
+    BRANCH=$1
+fi
+
+echo "Building mod_auth_openidc from source (${BRANCH})"
 
 echo "Installing dependencies"
 apt-get install -qy apache2-dev automake gcc git libapr1-dev \
@@ -10,6 +16,7 @@ apt-get install -qy apache2-dev automake gcc git libapr1-dev \
     make pkg-config
 
 git clone https://github.com/pingidentity/mod_auth_openidc /tmp/mod_auth_openidc
+git checkout $BRANCH
 
 cd /tmp/mod_auth_openidc
 ./autogen.sh
