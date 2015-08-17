@@ -16,9 +16,9 @@ apt-get install -qy apache2-dev automake gcc git libapr1-dev \
     make pkg-config
 
 git clone https://github.com/pingidentity/mod_auth_openidc /tmp/mod_auth_openidc
-git checkout $BRANCH
 
 cd /tmp/mod_auth_openidc
+git checkout $BRANCH
 ./autogen.sh
 ./configure --with-apxs2=/usr/bin/apxs
 make
