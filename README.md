@@ -22,6 +22,7 @@ The environment variables recognized by the container are as follows:
 * HTTPD_PORT: The non-SSL port on which to run Apache.  Default: __80__
 * LOG_LEVEL: The logging level for Apache.  Default: __warn__
 * OIDC_CLAIM: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require claim hd:broadinstitute.org__
+* OIDC_COOKIE: The name of the OIDC cookie to set for the session.  Default: **prometheus_session**
 * OIDC_SCOPES: The scopes to request from Google upon successful authentication.  Default: __openid email profile__
 * PROXY_PATH: The Apache `Location` to configure with OpenID Connect, which will do the whole 3-legged OAuth2 process.  Default: __/__
 * PROXY_PATH2: The Apache `Location` to configure with OAuth2.0 authentication, which will require a valid Google token to access.  Default: __/api__

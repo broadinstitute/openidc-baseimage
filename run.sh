@@ -43,6 +43,11 @@ elif [ "$OIDC_CLAIM" == '(none)' ]; then
     export OIDC_CLAIM=
 fi
 
+# update OIDC_COOKIE
+if [ -z "$OIDC_COOKIE" ] ; then
+    export OIDC_COOKIE='prometheus_session'
+fi
+
 # update LOG_LEVEL
 if [ -z "$LOG_LEVEL" ] ; then
     export LOG_LEVEL=warn
