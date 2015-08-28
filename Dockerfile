@@ -20,7 +20,7 @@ RUN apt-get update && \
 
 ADD run.sh /etc/service/apache2/run
 ADD auth_openidc.load /etc/apache2/mods-available/auth_openidc.load
-ADD auth_openidc.conf /etc/apache2/conf-available/auth_openidc.conf
+ADD auth_openidc.conf /etc/apache2/mods-available/auth_openidc.conf
 ADD ports.conf /etc/apache2/ports.conf
 ADD site.conf /etc/apache2/sites-available/site.conf
 ADD ca-bundle.crt /etc/ssl/certs/ca-bundle.crt
