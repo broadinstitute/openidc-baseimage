@@ -65,7 +65,7 @@ fi
 
 # update OIDC_CLAIM2
 if [ -z "$OIDC_CLAIM2" ] ; then
-    export OIDC_CLAIM2='Require All Granted'
+    export OIDC_CLAIM2='Require all granted'
 elif [ "$OIDC_CLAIM2" == '(none)' ]; then
     export OIDC_CLAIM2=
 fi
