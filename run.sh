@@ -59,14 +59,14 @@ fi
 # update OIDC_CLAIM
 if [ -z "$OIDC_CLAIM" ] ; then
     export OIDC_CLAIM='Require valid-user'
-elif [ "$OIDC_CLAIM" == '(none)' ]; then
+elif [ "$OIDC_CLAIM" = '(none)' ]; then
     export OIDC_CLAIM=
 fi
 
 # update OIDC_CLAIM2
 if [ -z "$OIDC_CLAIM2" ] ; then
     export OIDC_CLAIM2='Require all granted'
-elif [ "$OIDC_CLAIM2" == '(none)' ]; then
+elif [ "$OIDC_CLAIM2" = '(none)' ]; then
     export OIDC_CLAIM2=
 fi
 
