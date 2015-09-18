@@ -40,7 +40,7 @@ fi
 if [ -z "$AUTH_REQUIRE" ] ; then
     # backward compatibility for OIDC_CLAIM
     if [ -n "$OIDC_CLAIM" ] ; then
-        export AUTH_REQUIRE=$OIDC_CLAIM
+        export AUTH_REQUIRE="${OIDC_CLAIM}"
     else
         export AUTH_REQUIRE='Require valid-user'
     fi
@@ -52,7 +52,7 @@ fi
 if [ -z "$AUTH_REQUIRE2" ] ; then
     # backward compatibility for OIDC_CLAIM2
     if [ -n "$OIDC_CLAIM2" ] ; then
-        export AUTH_REQUIRE2=$OIDC_CLAIM2
+        export AUTH_REQUIRE2="${OIDC_CLAIM2}"
     else
         export AUTH_REQUIRE2='Require valid-user'
     fi
