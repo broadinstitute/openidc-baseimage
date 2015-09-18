@@ -15,6 +15,10 @@ Make sure you have the `Client ID` and `Client Secret` from the above steps.  Yo
 
 The environment variables recognized by the container are as follows:
 
+* ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin__
+* ALLOW_HEADERS2: The CORS headers to allow for *PROXY_PATH2*.  Default:  None
+* AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
+* AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
 * AUTH_TYPE: The AuthType to use for *PROXY_PATH*.  Default: __AuthType oauth20__
 * AUTH_TYPE2: The AuthType to use for *PROXY_PATH2*.  Default: __AuthType None__
 * CALLBACK_PATH: Just the path to the callback URI, used by Apache to setup a `Location` tag.  Defaults to the path following the hostname in `CALLBACK_URI`
@@ -23,8 +27,6 @@ The environment variables recognized by the container are as follows:
 * CLIENTSECRET: __Required parameter__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * HTTPD_PORT: The non-SSL port on which to run Apache.  Default: __80__
 * LOG_LEVEL: The logging level for Apache.  Default: __warn__
-* OIDC_CLAIM: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
-* OIDC_CLAIM2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
 * OIDC_COOKIE: The name of the OIDC cookie to set for the session.  Default: **prometheus_session**
 * OIDC_SCOPES: The scopes to request from Google upon successful authentication.  Default: __openid email profile__
 * PROXY_PATH: The Apache `Location` to configure with OpenID Connect, which will do the whole 3-legged OAuth2 process.  Default: __/__
