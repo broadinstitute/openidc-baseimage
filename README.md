@@ -15,7 +15,7 @@ Make sure you have the `Client ID` and `Client Secret` from the above steps.  Yo
 
 The environment variables recognized by the container are as follows:
 
-* ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin__
+* ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"__
 * ALLOW_HEADERS2: The CORS headers to allow for *PROXY_PATH2*.  Default:  None
 * AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
 * AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__

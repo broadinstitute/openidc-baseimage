@@ -28,7 +28,7 @@ fi
 
 # update ALLOW_HEADERS
 if [ -z "$ALLOW_HEADERS" ] ; then
-    export ALLOW_HEADERS='Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin'
+    export ALLOW_HEADERS='Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"'
 fi
 
 # set ALLOW_HEADERS
