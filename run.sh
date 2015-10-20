@@ -60,6 +60,41 @@ elif [ "$AUTH_REQUIRE2" = '(none)' ]; then
     export AUTH_REQUIRE2=
 fi
 
+
+# update ALLOW_HEADERS
+if [ -z "$ALLOW_HEADERS" ] ; then
+    export ALLOW_HEADERS='Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"'
+fi
+
+# set ALLOW_HEADERS
+if [ -z "$ALLOW_HEADERS2" ] ; then
+    export ALLOW_HEADERS2=
+fi
+
+# update AUTH_REQUIRE
+if [ -z "$AUTH_REQUIRE" ] ; then
+    # backward compatibility for OIDC_CLAIM
+    if [ -n "$OIDC_CLAIM" ] ; then
+        export AUTH_REQUIRE="${OIDC_CLAIM}"
+    else
+        export AUTH_REQUIRE='Require valid-user'
+    fi
+elif [ "$AUTH_REQUIRE" = '(none)' ]; then
+    export AUTH_REQUIRE=
+fi
+
+# update AUTH_REQUIRE2
+if [ -z "$AUTH_REQUIRE2" ] ; then
+    # backward compatibility for OIDC_CLAIM2
+    if [ -n "$OIDC_CLAIM2" ] ; then
+        export AUTH_REQUIRE2="${OIDC_CLAIM2}"
+    else
+        export AUTH_REQUIRE2='Require valid-user'
+    fi
+elif [ "$AUTH_REQUIRE2" = '(none)' ]; then
+    export AUTH_REQUIRE2=
+fi
+
 # update AUTH_TYPE
 if [ -z "$AUTH_TYPE" ] ; then
     export AUTH_TYPE='AuthType oauth20'
