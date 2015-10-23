@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
 ADD build-oidc.sh setup-apache.sh /root/
 
 RUN apt-get update && \
-    apt-get install -qy apache2 curl libjansson4 && \
+    apt-get install -qy apache2 curl libjansson4 telnet && \
     /root/build-oidc.sh v${OPENIDC_VERSION} && \
     mkdir -p /etc/service/apache2/supervise && \
     mkdir /app && \

@@ -21,6 +21,10 @@ The environment variables recognized by the container are as follows:
 * ALLOW_METHODS2: The CORS methods to allow for *PROXY_PATH2*.  Default:  None
 * AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
 * AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
+* ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"__
+* ALLOW_HEADERS2: The CORS headers to allow for *PROXY_PATH2*.  Default:  None
+* AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
+* AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
 * AUTH_TYPE: The AuthType to use for *PROXY_PATH*.  Default: __AuthType oauth20__
 * AUTH_TYPE2: The AuthType to use for *PROXY_PATH2*.  Default: __AuthType None__
 * CALLBACK_PATH: Just the path to the callback URI, used by Apache to setup a `Location` tag.  Defaults to the path following the hostname in `CALLBACK_URI`
