@@ -31,9 +31,19 @@ if [ -z "$ALLOW_HEADERS" ] ; then
     export ALLOW_HEADERS='Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"'
 fi
 
-# set ALLOW_HEADERS
+# set ALLOW_HEADERS2
 if [ -z "$ALLOW_HEADERS2" ] ; then
     export ALLOW_HEADERS2=
+fi
+
+# update ALLOW_METHODS
+if [ -z "$ALLOW_METHODS" ] ; then
+    export ALLOW_METHODS='Header set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"'
+fi
+
+# update ALLOW_METHODS2
+if [ -z "$ALLOW_METHODS2" ] ; then
+    export ALLOW_METHODS2=''
 fi
 
 # update AUTH_REQUIRE

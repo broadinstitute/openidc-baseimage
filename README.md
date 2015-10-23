@@ -17,6 +17,8 @@ The environment variables recognized by the container are as follows:
 
 * ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"__
 * ALLOW_HEADERS2: The CORS headers to allow for *PROXY_PATH2*.  Default:  None
+* ALLOW_METHODS: The CORS methods to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"__
+* ALLOW_METHODS2: The CORS methods to allow for *PROXY_PATH2*.  Default:  None
 * AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
 * AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
 * AUTH_TYPE: The AuthType to use for *PROXY_PATH*.  Default: __AuthType oauth20__
