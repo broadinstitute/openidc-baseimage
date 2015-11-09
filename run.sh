@@ -16,6 +16,11 @@ if [ -z "$CLIENTSECRET" ] ; then
     exit 2
 fi
 
+# update REMOTE_USER_CLAIM
+if [ -z "$REMOTE_USER_CLAIM" ] ; then
+    export REMOTE_USER_CLAIM=email
+fi
+
 # update SERVER_ADMIN
 if [ -z "$SERVER_ADMIN" ] ; then
     export SERVER_ADMIN=devops@broadinstitute.org
