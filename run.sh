@@ -8,12 +8,12 @@ export TZ=America/New_York
 
 # update ClientID
 if [ -z "$CLIENTID" ] ; then
-    exit 1
+    export CLIENTID='none'
 fi
 
 # update ClientSecret
 if [ -z "$CLIENTSECRET" ] ; then
-    exit 2
+    export CLIENTSECRET='none'
 fi
 
 # update REMOTE_USER_CLAIM
@@ -41,6 +41,11 @@ if [ -z "$ALLOW_HEADERS2" ] ; then
     export ALLOW_HEADERS2=
 fi
 
+# set ALLOW_HEADERS3
+if [ -z "$ALLOW_HEADERS3" ] ; then
+    export ALLOW_HEADERS3=
+fi
+
 # update ALLOW_METHODS
 if [ -z "$ALLOW_METHODS" ] ; then
     export ALLOW_METHODS='Header set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"'
@@ -48,7 +53,12 @@ fi
 
 # update ALLOW_METHODS2
 if [ -z "$ALLOW_METHODS2" ] ; then
-    export ALLOW_METHODS2=''
+    export ALLOW_METHODS2=
+fi
+
+# update ALLOW_METHODS3
+if [ -z "$ALLOW_METHODS3" ] ; then
+    export ALLOW_METHODS3=
 fi
 
 # update AUTH_REQUIRE
@@ -57,7 +67,7 @@ if [ -z "$AUTH_REQUIRE" ] ; then
     if [ -n "$OIDC_CLAIM" ] ; then
         export AUTH_REQUIRE="${OIDC_CLAIM}"
     else
-        export AUTH_REQUIRE='Require valid-user'
+        export AUTH_REQUIRE='Require all granted'
     fi
 elif [ "$AUTH_REQUIRE" = '(none)' ]; then
     export AUTH_REQUIRE=
@@ -75,49 +85,26 @@ elif [ "$AUTH_REQUIRE2" = '(none)' ]; then
     export AUTH_REQUIRE2=
 fi
 
-
-# update ALLOW_HEADERS
-if [ -z "$ALLOW_HEADERS" ] ; then
-    export ALLOW_HEADERS='Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"'
-fi
-
-# set ALLOW_HEADERS
-if [ -z "$ALLOW_HEADERS2" ] ; then
-    export ALLOW_HEADERS2=
-fi
-
-# update AUTH_REQUIRE
-if [ -z "$AUTH_REQUIRE" ] ; then
-    # backward compatibility for OIDC_CLAIM
-    if [ -n "$OIDC_CLAIM" ] ; then
-        export AUTH_REQUIRE="${OIDC_CLAIM}"
-    else
-        export AUTH_REQUIRE='Require valid-user'
-    fi
-elif [ "$AUTH_REQUIRE" = '(none)' ]; then
-    export AUTH_REQUIRE=
-fi
-
-# update AUTH_REQUIRE2
-if [ -z "$AUTH_REQUIRE2" ] ; then
-    # backward compatibility for OIDC_CLAIM2
-    if [ -n "$OIDC_CLAIM2" ] ; then
-        export AUTH_REQUIRE2="${OIDC_CLAIM2}"
-    else
-        export AUTH_REQUIRE2='Require valid-user'
-    fi
-elif [ "$AUTH_REQUIRE2" = '(none)' ]; then
-    export AUTH_REQUIRE2=
+# update AUTH_REQUIRE3
+if [ -z "$AUTH_REQUIRE3" ] ; then
+    export AUTH_REQUIRE3='Require valid-user'
+elif [ "$AUTH_REQUIRE3" = '(none)' ]; then
+    export AUTH_REQUIRE3=
 fi
 
 # update AUTH_TYPE
 if [ -z "$AUTH_TYPE" ] ; then
-    export AUTH_TYPE='AuthType oauth20'
+    export AUTH_TYPE='AuthType None'
 fi
 
 # update AUTH_TYPE2
 if [ -z "$AUTH_TYPE2" ] ; then
-    export AUTH_TYPE2='AuthType None'
+    export AUTH_TYPE2='AuthType oauth20'
+fi
+
+# update AUTH_TYPE3
+if [ -z "$AUTH_TYPE3" ] ; then
+    export AUTH_TYPE3='AuthType oauth20'
 fi
 
 # update CALLBACK_URI
@@ -152,7 +139,12 @@ fi
 
 # update PROXY_PATH2
 if [ -z "$PROXY_PATH2" ] ; then
-    export PROXY_PATH2=/swagger
+    export PROXY_PATH2=/api
+fi
+
+# update PROXY_PATH3
+if [ -z "$PROXY_PATH3" ] ; then
+    export PROXY_PATH3=/register
 fi
 
 # update OIDC_SCOPES

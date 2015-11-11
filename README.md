@@ -17,26 +17,27 @@ The environment variables recognized by the container are as follows:
 
 * ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"__
 * ALLOW_HEADERS2: The CORS headers to allow for *PROXY_PATH2*.  Default:  None
+* ALLOW_HEADERS3: The CORS headers to allow for *PROXY_PATH3*.  Default:  None
 * ALLOW_METHODS: The CORS methods to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"__
 * ALLOW_METHODS2: The CORS methods to allow for *PROXY_PATH2*.  Default:  None
-* AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
-* AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
-* ALLOW_HEADERS: The CORS headers to allow for *PROXY_PATH*.  Default: __Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"__
-* ALLOW_HEADERS2: The CORS headers to allow for *PROXY_PATH2*.  Default:  None
-* AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH* and *CALLBACK_PATH*.  Default: __Require valid-user__
-* AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require All Granted__
-* AUTH_TYPE: The AuthType to use for *PROXY_PATH*.  Default: __AuthType oauth20__
-* AUTH_TYPE2: The AuthType to use for *PROXY_PATH2*.  Default: __AuthType None__
+* ALLOW_METHODS3: The CORS methods to allow for *PROXY_PATH3*.  Default:  None
+* AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH*.  Default: __Require all granted__
+* AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require valid-user__
+* AUTH_REQUIRE3: An OIDC claim to restrict access on *PROXY_PATH3*.  Default: __Require valid-user__
+* AUTH_TYPE: The AuthType to use for *PROXY_PATH*.  Default: __AuthType None__
+* AUTH_TYPE2: The AuthType to use for *PROXY_PATH2*.  Default: __AuthType oauth20__
+* AUTH_TYPE3: The AuthType to use for *PROXY_PATH3*.  Default: __AuthType oauth20__
 * CALLBACK_PATH: Just the path to the callback URI, used by Apache to setup a `Location` tag.  Defaults to the path following the hostname in `CALLBACK_URI`
 * CALLBACK_URI: The fully qualified callback URI.  Default: __https://SERVER_NAME/oauth2callback__
-* CLIENTID: __Required parameter__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
-* CLIENTSECRET: __Required parameter__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
+* CLIENTID: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
+* CLIENTSECRET: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * HTTPD_PORT: The non-SSL port on which to run Apache.  Default: __80__
 * LOG_LEVEL: The logging level for Apache.  Default: __warn__
 * OIDC_COOKIE: The name of the OIDC cookie to set for the session.  Default: **prometheus_session**
 * OIDC_SCOPES: The scopes to request from Google upon successful authentication.  Default: __openid email profile__
-* PROXY_PATH: The Apache `Location` to configure with OpenID Connect, which will do the whole 3-legged OAuth2 process.  Default: __/__
+* PROXY_PATH: The Apache `Location` to configure without authentication.  Default: __/__
 * PROXY_PATH2: The Apache `Location` to configure with OAuth2.0 authentication, which will require a valid Google token to access.  Default: __/api__
+* PROXY_PATH3: The Apache `Location` to configure with OAuth2.0 authentication, which will require a valid Google token to access.  Default: __/register__
 * SERVER_ADMIN: The email address to use in Apache for the `ServerAdmin` value.  Default: __devops@broadinstitute.org__
 * SERVER_NAME: The hostname to use in Apache for the `ServerName` value.  Default: __localhost__
 * SSL_HTTPD_PORT:  The SSL port on which to run Apache.  Default: __443__
