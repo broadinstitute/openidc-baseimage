@@ -107,6 +107,37 @@ if [ -z "$AUTH_TYPE3" ] ; then
     export AUTH_TYPE3='AuthType oauth20'
 fi
 
+# update AUTH_LDAP_URL
+if [ -z "$AUTH_LDAP_URL" ] ; then
+    export AUTH_LDAP_URL=
+fi
+
+# update AUTH_LDAP_URL2
+if [ -z "$AUTH_LDAP_URL2" ] ; then
+    export AUTH_LDAP_URL2=
+fi
+
+# update AUTH_LDAP_URL3
+if [ -z "$AUTH_LDAP_URL3" ] ; then
+    export AUTH_LDAP_URL3=
+fi
+
+# update AUTH_LDAP_GROUP_ATTR
+if [ -z "$AUTH_LDAP_GROUP_ATTR" ] ; then
+    export AUTH_LDAP_GROUP_ATTR=
+fi
+
+# update AUTH_LDAP_GROUP_ATTR2
+if [ -z "$AUTH_LDAP_GROUP_ATTR2" ] ; then
+    export AUTH_LDAP_GROUP_ATTR2=
+fi
+
+# update AUTH_LDAP_GROUP_ATTR3
+if [ -z "$AUTH_LDAP_GROUP_ATTR3" ] ; then
+    export AUTH_LDAP_GROUP_ATTR3=
+fi
+
+
 # update CALLBACK_URI
 if [ -z "$CALLBACK_URI" ] ; then
     export CALLBACK_URI="https://${SERVER_NAME}/oauth2callback"
