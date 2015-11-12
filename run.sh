@@ -178,6 +178,21 @@ if [ -z "$PROXY_PATH3" ] ; then
     export PROXY_PATH3=/register
 fi
 
+# update PROXY_URL
+if [ -z "$PROXY_URL" ] ; then
+    export PROXY_URL=http://app:8080/
+fi
+
+# update PROXY_URL2
+if [ -z "$PROXY_URL2" ] ; then
+    export PROXY_URL2=http://app:8080/api
+fi
+
+# update PROXY_URL3
+if [ -z "$PROXY_URL3" ] ; then
+    export PROXY_URL3=http://app:8080/register
+fi
+
 # update OIDC_SCOPES
 if [ -z "$OIDC_SCOPES" ] ; then
     export OIDC_SCOPES='openid email profile'
