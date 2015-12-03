@@ -38,6 +38,7 @@ The environment variables recognized by the container are as follows:
 * CLIENTID: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * CLIENTSECRET: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * HTTPD_PORT: The non-SSL port on which to run Apache.  Default: __80__
+* LDAP_CACHE_TTL: The LDAP cache timeout.  Default: __60__
 * LOG_LEVEL: The logging level for Apache.  Default: __warn__
 * OIDC_COOKIE: The name of the OIDC cookie to set for the session.  Default: **prometheus_session**
 * OIDC_SCOPES: The scopes to request from Google upon successful authentication.  Default: __openid email profile__

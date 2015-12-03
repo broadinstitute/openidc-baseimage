@@ -153,6 +153,11 @@ if [ -z "$HTTPD_PORT" ] ; then
     export HTTPD_PORT=80
 fi
 
+# update LDAP_CACHE_TTL
+if [ -z "$LDAP_CACHE_TTL" ] ; then
+    export LDAP_CACHE_TTL='60'
+fi
+
 # update LOG_LEVEL
 if [ -z "$LOG_LEVEL" ] ; then
     export LOG_LEVEL=warn
