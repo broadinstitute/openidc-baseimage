@@ -198,6 +198,11 @@ if [ -z "$PROXY_URL3" ] ; then
     export PROXY_URL3=http://app:8080/register
 fi
 
+# update OIDC_PROVIDER_METADATA_URL
+if [ -z "$OIDC_PROVIDER_METADATA_URL" ] ; then
+    export OIDC_PROVIDER_METADATA_URL='https://accounts.google.com/.well-known/openid-configuration'
+fi
+
 # update OIDC_SCOPES
 if [ -z "$OIDC_SCOPES" ] ; then
     export OIDC_SCOPES='openid email profile'
