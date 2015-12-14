@@ -12,6 +12,7 @@ RUN apt-get update && \
     mkdir -p /etc/service/apache2/supervise && \
     mkdir /app && \
     rm -rf /etc/service/sshd && \
+    rm -f /etc/my_init.d/00_regen_ssh_host_keys.sh && \
     mv /tmp/build/build-oidc.sh /root && \
     mv /tmp/build/setup-apache.sh /root && \
     mv /tmp/build/run.sh /etc/service/apache2/run && \
