@@ -6,6 +6,8 @@ export LANG=C
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export TZ=America/New_York
 
+OVERRIDE_SCRIPT="/etc/apache2/override.sh"
+
 # update ClientID
 if [ -z "$CLIENTID" ] ; then
     export CLIENTID='none'
@@ -41,11 +43,6 @@ if [ -z "$ALLOW_HEADERS2" ] ; then
     export ALLOW_HEADERS2=
 fi
 
-# set ALLOW_HEADERS3
-if [ -z "$ALLOW_HEADERS3" ] ; then
-    export ALLOW_HEADERS3=
-fi
-
 # update ALLOW_METHODS
 if [ -z "$ALLOW_METHODS" ] ; then
     export ALLOW_METHODS='Header set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"'
@@ -54,11 +51,6 @@ fi
 # update ALLOW_METHODS2
 if [ -z "$ALLOW_METHODS2" ] ; then
     export ALLOW_METHODS2=
-fi
-
-# update ALLOW_METHODS3
-if [ -z "$ALLOW_METHODS3" ] ; then
-    export ALLOW_METHODS3=
 fi
 
 # update AUTH_REQUIRE
@@ -85,13 +77,6 @@ elif [ "$AUTH_REQUIRE2" = '(none)' ]; then
     export AUTH_REQUIRE2=
 fi
 
-# update AUTH_REQUIRE3
-if [ -z "$AUTH_REQUIRE3" ] ; then
-    export AUTH_REQUIRE3='Require valid-user'
-elif [ "$AUTH_REQUIRE3" = '(none)' ]; then
-    export AUTH_REQUIRE3=
-fi
-
 # update AUTH_TYPE
 if [ -z "$AUTH_TYPE" ] ; then
     export AUTH_TYPE='AuthType None'
@@ -101,42 +86,6 @@ fi
 if [ -z "$AUTH_TYPE2" ] ; then
     export AUTH_TYPE2='AuthType oauth20'
 fi
-
-# update AUTH_TYPE3
-if [ -z "$AUTH_TYPE3" ] ; then
-    export AUTH_TYPE3='AuthType oauth20'
-fi
-
-# update AUTH_LDAP_URL
-if [ -z "$AUTH_LDAP_URL" ] ; then
-    export AUTH_LDAP_URL=
-fi
-
-# update AUTH_LDAP_URL2
-if [ -z "$AUTH_LDAP_URL2" ] ; then
-    export AUTH_LDAP_URL2=
-fi
-
-# update AUTH_LDAP_URL3
-if [ -z "$AUTH_LDAP_URL3" ] ; then
-    export AUTH_LDAP_URL3=
-fi
-
-# update AUTH_LDAP_GROUP_ATTR
-if [ -z "$AUTH_LDAP_GROUP_ATTR" ] ; then
-    export AUTH_LDAP_GROUP_ATTR=
-fi
-
-# update AUTH_LDAP_GROUP_ATTR2
-if [ -z "$AUTH_LDAP_GROUP_ATTR2" ] ; then
-    export AUTH_LDAP_GROUP_ATTR2=
-fi
-
-# update AUTH_LDAP_GROUP_ATTR3
-if [ -z "$AUTH_LDAP_GROUP_ATTR3" ] ; then
-    export AUTH_LDAP_GROUP_ATTR3=
-fi
-
 
 # update CALLBACK_URI
 if [ -z "$CALLBACK_URI" ] ; then
@@ -151,11 +100,6 @@ fi
 # set httpd port
 if [ -z "$HTTPD_PORT" ] ; then
     export HTTPD_PORT=80
-fi
-
-# update LDAP_CACHE_TTL
-if [ -z "$LDAP_CACHE_TTL" ] ; then
-    export LDAP_CACHE_TTL='60'
 fi
 
 # update LOG_LEVEL
@@ -178,11 +122,6 @@ if [ -z "$PROXY_PATH2" ] ; then
     export PROXY_PATH2=/api
 fi
 
-# update PROXY_PATH3
-if [ -z "$PROXY_PATH3" ] ; then
-    export PROXY_PATH3=/register
-fi
-
 # update PROXY_URL
 if [ -z "$PROXY_URL" ] ; then
     export PROXY_URL=http://app:8080/
@@ -191,11 +130,6 @@ fi
 # update PROXY_URL2
 if [ -z "$PROXY_URL2" ] ; then
     export PROXY_URL2=http://app:8080/api
-fi
-
-# update PROXY_URL3
-if [ -z "$PROXY_URL3" ] ; then
-    export PROXY_URL3=http://app:8080/register
 fi
 
 # update OIDC_PROVIDER_METADATA_URL
@@ -211,6 +145,11 @@ fi
 # set httpd ssl port
 if [ -z "$SSL_HTTPD_PORT" ] ; then
     export SSL_HTTPD_PORT=443
+fi
+
+# If there is an override script, pull it in
+if [ -f "${OVERRIDE_SCRIPT}" ]; then
+    . $OVERRIDE_SCRIPT
 fi
 
 # Apache gets grumpy about PID files pre-existing
