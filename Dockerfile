@@ -11,6 +11,7 @@ RUN apt-get update && \
     apt-get install -qy apache2 curl libjansson4 telnet && \
     mkdir -p /etc/service/apache2/supervise && \
     mkdir /app && \
+    rm -rf /etc/service/sshd && \
     mv /tmp/build/build-oidc.sh /root && \
     mv /tmp/build/setup-apache.sh /root && \
     mv /tmp/build/run.sh /etc/service/apache2/run && \
