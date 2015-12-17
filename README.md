@@ -56,6 +56,10 @@ sudo docker run -it --rm --name apacheoidc --hostname test.example.org \
 
 The GitHub repository (https://github.com/broadinstitute/openidc-baseimage) for this container also contains a [Docker Compose][4] YAML file that you can use as a template to build an OpenIDC container without the super long `docker run` line.
 
+### Override script
+
+Since this container is inherited by several other sub-images, it has become necessary to allow sub-images to tweak Apache before starting up.  As such, we have created the ability to add in an `/etc/apache2/override.sh` script.  This script will be run after all the default actions in `/etc/service/apache2/run`, but before Apache itself is run.  Therefore, if sites need to be enabled/disabled, variables need to be checked or set, etc. that is different than what comes standard with this image, adding an `override.sh` script can do all that.  To see th specifics about where `override.sh` comes in the run order, check out the `run.sh` script in this repo.
+
 ### Mounted Volumes
 
 This container defaults to exposing a web application located at `/app` on the container filesystem.  Therefore, you can either inherit this image from a new image and either `COPY` or `ADD` your site into `/app` on the container, or you could mount your site in using something like __-v /path/to/site:/app__.
