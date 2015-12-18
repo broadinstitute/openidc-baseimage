@@ -38,6 +38,7 @@ The environment variables recognized by the container are as follows:
 * SSL_HTTPD_PORT:  The SSL port on which to run Apache.  Default: __443__
 * SSL_PROTOCOL:  The SSL protocols to use when running Apache.  Default: __-SSLv3 -TLSv1 -TLSv1.1 +TLSv1.2__
 * SSL_CIPHER_SUITE:  The SSL cipher suite to use when running Apache.  Default: __ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA:AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!ADH!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA:!DH__
+* X_FRAME_OPTIONS:  The X-Frame-Options header to add to all traffic.  Default: __Header always append X-Frame-Options SAMEORIGIN__
 
 Once all these environment variables are setup correctly, you can run a fully-functional version fo the container that will be setup to communicate with Google for authentication.  The following example fills in some necessary environment variables while inheriting the defaults of others:
 
