@@ -122,6 +122,11 @@ if [ -z "$PROXY_PATH2" ] ; then
     export PROXY_PATH2=/api
 fi
 
+# update PROXY_TIMEOUT
+if [ -z "$PROXY_TIMEOUT" ] ; then
+    export PROXY_TIMEOUT='300'
+fi
+
 # update PROXY_URL
 if [ -z "$PROXY_URL" ] ; then
     export PROXY_URL=http://app:8080/
