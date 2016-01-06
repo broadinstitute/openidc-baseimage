@@ -33,6 +33,7 @@ The environment variables recognized by the container are as follows:
 * OIDC_SCOPES: The scopes to request from Google upon successful authentication.  Default: __openid email profile__
 * PROXY_PATH: The Apache `Location` to configure without authentication.  Default: __/__
 * PROXY_PATH2: The Apache `Location` to configure with OAuth2.0 authentication, which will require a valid Google token to access.  Default: __/api__
+* PROXY_TIMEOUT: The Apache `ProxyTimeout` to configure timeout for proxies globally.  Default: __300__
 * SERVER_ADMIN: The email address to use in Apache for the `ServerAdmin` value.  Default: __devops@broadinstitute.org__
 * SERVER_NAME: The hostname to use in Apache for the `ServerName` value.  Default: __localhost__
 * SSL_HTTPD_PORT:  The SSL port on which to run Apache.  Default: __443__
