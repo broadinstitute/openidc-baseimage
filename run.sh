@@ -33,26 +33,6 @@ if [ -z "$SERVER_NAME" ] ; then
     export SERVER_NAME=localhost
 fi
 
-# update ALLOW_HEADERS
-if [ -z "$ALLOW_HEADERS" ] ; then
-    export ALLOW_HEADERS='Header set Access-Control-Allow-Headers "authorization, content-type, accept, origin"'
-fi
-
-# set ALLOW_HEADERS2
-if [ -z "$ALLOW_HEADERS2" ] ; then
-    export ALLOW_HEADERS2=
-fi
-
-# update ALLOW_METHODS
-if [ -z "$ALLOW_METHODS" ] ; then
-    export ALLOW_METHODS='Header set Access-Control-Allow-Methods "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD"'
-fi
-
-# update ALLOW_METHODS2
-if [ -z "$ALLOW_METHODS2" ] ; then
-    export ALLOW_METHODS2=
-fi
-
 # update AUTH_REQUIRE
 if [ -z "$AUTH_REQUIRE" ] ; then
     # backward compatibility for OIDC_CLAIM
@@ -160,11 +140,6 @@ fi
 # set the SSL Cipher Suite
 if [ -z "$SSL_CIPHER_SUITE" ] ; then
     export SSL_CIPHER_SUITE='ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-ES256-SHA:ALL:!3DES:!ADH:!DES:!DH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!EXPORT:!KRB5-DES-CBC3-SHA:!MD5:!PSK:!RC4:!aECDH:!aNULL:!eNULL'
-fi
-
-# set the SSL Cipher Suite
-if [ -z "$X_FRAME_OPTIONS" ] ; then
-    export X_FRAME_OPTIONS='Header always append X-Frame-Options SAMEORIGIN'
 fi
 
 # If there is an override script, pull it in
