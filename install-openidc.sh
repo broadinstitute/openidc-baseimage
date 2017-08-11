@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script installs openidc apache module using the debian packages
+# in the git repo instead of building from source
+
 set -e
 
 OPENIDC_VERSION=${OPENIDC_VERSION:-""}
