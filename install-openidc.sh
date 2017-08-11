@@ -3,10 +3,12 @@
 # This script installs openidc apache module using the debian packages
 # in the git repo instead of building from source
 
-set -e
+set -xe
 
 OPENIDC_VERSION=${OPENIDC_VERSION:-""}
 PHUSION_BASEIMAGE=${PHUSION_BASEIMAGE:-""}
+# init var
+pack=""
 
 if [ -z "${OPENIDC_VERSION}" ] || [ -z "${PHUSION_BASEIMAGE}" ]
 then
@@ -16,11 +18,9 @@ fi
 
 # set initial ubuntu release code based on phusion base image version
 case ${PHUSION_BASEIMAGE} in
-   "0.9.17|0.9.18") pack="trusty"
+   0.9.17|0.9.18) pack="trusty"
       ;;
-   "0.9.22|0.9.21|0.9.20|0.9.19") pack="xenial"
-      ;;
-    *) pack="wiley"
+   0.9.22|0.9.21|0.9.20|0.9.19) pack="xenial"
       ;;
 esac
 
@@ -31,14 +31,14 @@ CJOSE_VERSION=""
 CJOSE_OPENIDC_DIST_VERSION=""
 # set CJOSE version and override pack based on OPENIDC version
 case ${OPENIDC_VERSION} in 
-   "1.8.6|1.8.7|1.8.8") 
+   1.8.6|1.8.7|1.8.8) 
         if [ "${pack}" = "xenial" ]
         then
            # no xenial package but wiley works"
            pack="wiley"
         fi
      ;;
-   "2.0.0") 
+   2.0.0) 
         if [ "${pack}" = "xenial" ]
         then
            # no xenial package but wiley works"
@@ -47,7 +47,7 @@ case ${OPENIDC_VERSION} in
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.0.0"
      ;;
-   "2.1.0|2.1.1|2.1.2") 
+   2.1.0|2.1.1|2.1.2) 
         if [ "${pack}" = "xenial" ]
         then
            # no xenial package but wiley works"
@@ -56,7 +56,7 @@ case ${OPENIDC_VERSION} in
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.0"
      ;;
-   "2.1.3") 
+   2.1.3) 
         if [ "${pack}" = "xenial" ]
         then
            # no xenial package but wiley works"
@@ -67,6 +67,11 @@ case ${OPENIDC_VERSION} in
      ;;
 esac
    
+if [ -z "${pack}" ]
+then
+    echo "ERROR could not determine distro pack value."
+    exit 1
+fi
 
 # initialize URLs to null
 CJOSE_URL=""
