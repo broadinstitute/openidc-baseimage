@@ -1,10 +1,10 @@
-FROM phusion/baseimage:0.9.17
+FROM phusion/baseimage:0.9.22
 
 MAINTAINER Andrew Teixeira <teixeira@broadinstitute.org>
 
 ENV DEBIAN_FRONTEND=noninteractive \
     OPENIDC_VERSION=1.8.6 \
-    PHUSION_BASEIMAGE=0.9.17
+    PHUSION_BASEIMAGE=0.9.22
 
 ADD . /tmp/build
 

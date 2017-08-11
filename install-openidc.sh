@@ -34,15 +34,15 @@ case ${OPENIDC_VERSION} in
    1.8.6|1.8.7|1.8.8) 
         if [ "${pack}" = "xenial" ]
         then
-           # no xenial package but wiley works"
-           pack="wiley"
+           # no xenial package but wily works"
+           pack="wily"
         fi
      ;;
    2.0.0) 
         if [ "${pack}" = "xenial" ]
         then
-           # no xenial package but wiley works"
-           pack="wiley"
+           # no xenial package but wily works"
+           pack="wily"
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.0.0"
@@ -50,8 +50,8 @@ case ${OPENIDC_VERSION} in
    2.1.0|2.1.1|2.1.2) 
         if [ "${pack}" = "xenial" ]
         then
-           # no xenial package but wiley works"
-           pack="wiley"
+           # no xenial package but wily works"
+           pack="wily"
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.0"
@@ -59,8 +59,8 @@ case ${OPENIDC_VERSION} in
    2.1.3) 
         if [ "${pack}" = "xenial" ]
         then
-           # no xenial package but wiley works"
-           pack="wiley"
+           # no xenial package but wily works"
+           pack="wily"
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.3"
