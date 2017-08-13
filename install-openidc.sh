@@ -56,7 +56,7 @@ case ${OPENIDC_VERSION} in
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.0"
      ;;
-   2.1.3) 
+   2.1.3|2.1.4|2.1.5|2.1.6) 
         if [ "${pack}" = "xenial" ]
         then
            # no xenial package but wily works"
@@ -64,6 +64,24 @@ case ${OPENIDC_VERSION} in
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.3"
+     ;;
+    2.2.0)
+        if [ "${pack}" = "xenial" ]
+        then
+           # no xenial package but wily works"
+           pack="wily"
+        fi
+        CJOSE_VERSION="0.4.1"
+        CJOSE_OPENIDC_DIST_VERSION="2.2.0"
+     ;;
+    2.3.0|2.3.1)
+        if [ "${pack}" = "xenial" ]
+        then
+           # no xenial package but wily works"
+           pack="wily"
+        fi
+        CJOSE_VERSION="0.5.1"
+        CJOSE_OPENIDC_DIST_VERSION="2.3.0"
      ;;
 esac
    
