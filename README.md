@@ -152,8 +152,57 @@ This container defaults to exposing a web application located at `/app` on the c
 
 Built using the [Phusion Baseimage][1] container image.
 
+## Branching, Building, Releasing, Tagging, Maintenance Process
+
+### Docker Container
+
+This Git repo is set up on DockerHub to automatically build docker images upon certain types of changes to the repo.  Currently these changes are:
+
+* Any update to the "master" branch will initiate a build at DockerHub tagging the newly built docker image with the docker tag: "dev".  As such the "dev" docker tag will be floating - always tracking HEAD of master.
+* Any git tag starting with a number and followed by any number of "dots", numbers or charaacters will initiate a build at DockerHub against the git hash assoicated with that tag.  The resulting docker container will also have a docker tag to match the git tag.
+
+### Branching
+
+All changes must happen on a feature branch usually based off of the git "master" branch and the name of the branch can be anything you like with one exception.  When one needs to update a released version (ie a version that has a X.Y.Z git tag) a X.Y.Z_hotfix branch must first be created (if it does not already exist) based on the git tag matching the version (X.Y.Z).  Then you must create your feature branch off of this "_hotfix" branch.  Needless to say branch names X.Y.Z_hotfix are reserved and should be treated similar to "master" git branch.  Once your feature branch has been tested, you must create a PR into the appropriate base branch.
+**NOTE: feature work done against a "_hotfix" branch that is considered useful to other releases should be also applied to all "_hotfix" branches as well as to "master"**
+How one performs a release will be covered in more detail in the Releasing section below
+
+### Releasing
+
+#### Relasing a new version of OpenIDC Proxy
+
+New versions of openIDC proxy must be done off of the master branch.  Generally this will involve:
+
+* creating a "feature branch" based on the HEAD of master branch
+* Make the necessary changes for the new version
+* build and test updates manually
+* Once tested and ready, create PR into "master"
+* Merge PR into master
+* Create a version tag against newly merged master.  This tag will trigger the auto-build at DockerHub and actually create a "released" docker container.
+* After DockerHub completes the autobuild, pull new image, re-tag with a "_latest" tag (ie X.Y.Z_latest).  This will be a floating tag that should always point to the latest docker container for that released version.
+
+**NOTE**: in future the "latest" tag will be driven by a Jenkins job
+
+#### Updates to a previous released OpenIDC version
+
+Due to how the software is built, changes after a release are generally around updates to the phusion/baseimage version, patches to the underlying OS and/or additions of packages to the container.  The process consists of:
+
+* Determine if there already exist a "_hotfix" branch associated with the version of OpenIDC proxy you need to update.
+* If "_hotfix" branch exists, check out HEAD of "_hotfix" branch.  If branch does not exist, create a new version "_hotfix" (ie X.Y.Z_hotfix) based off of the X.Y.Z tag (git checkout -b X.Y.Z_hotfix X.Y.Z). Push newly created "_hotfix" branch to origin
+* Create a feature branch for your changes off of the HEAD of the associated "_hotfix" branch.
+* Make the necessary/desired updates on your feature branch
+* build and test manually
+* Once tested and ready, create a PR into the version "_hotfix" branch.
+* Merge PR
+* List all existing tags.  Look for tags of the form "X.Y.Z_#" and "X.Y.Z" that match the version you are updating.
+** If there is no "_#" tags then the tag name will be "X.Y.Z_1"
+** Find the highest "_#" number and add one - this will be your new tag name
+* Create a tag for new "_#" tag - this will cause DockerHub to autobuild
+* As with a new release, after the Dockerhub container is built, pull new image, re-tag with a "_latest" tag (ie X.Y.Z_latest).  This will be a floating tag that should always point to the latest docker container for that released version.
+
 [1]: https://github.com/phusion/baseimage-docker "Phusion Baseimage"
 [2]: http://httpd.apache.org/ "Apache"
 [3]: https://github.com/pingidentity/mod_auth_openidc "mod_auth_openidc"
 [4]: https://docs.docker.com/compose/ "Docker Compose"
 [5]: https://earlyaccess.rapid7.com/tcell/ "tCell"
+[6]: https://hub.docker.com/r/broadinstitute/openidc-baseimage/ "Broad OpenIDC Baseimage"
