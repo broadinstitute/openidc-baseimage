@@ -24,6 +24,15 @@ case ${PHUSION_BASEIMAGE} in
       ;;
 esac
 
+# var to hold added name for download URL some versions require it
+#  some do not. Versions > 2.1.6 do not have additional tag in URL so the 
+#  default is to not supply it
+ubuntu=""
+
+# var to hold added tag for libcjose name.  Versions > 2.1.6 added a zero
+# to URL name - so default has zero added
+cjosename="0"
+
 # default is CJOSE not used so null out var
 CJOSE_VERSION=""
 # a new cjose distro is not released every time so need to reference 
@@ -37,6 +46,8 @@ case ${OPENIDC_VERSION} in
            # no xenial package but wily works"
            pack="wily"
         fi
+        ubuntu="ubuntu1"
+        cjosename=""
      ;;
    2.0.0) 
         if [ "${pack}" = "xenial" ]
@@ -46,6 +57,8 @@ case ${OPENIDC_VERSION} in
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.0.0"
+        ubuntu="ubuntu1"
+        cjosename=""
      ;;
    2.1.0|2.1.1|2.1.2) 
         if [ "${pack}" = "xenial" ]
@@ -55,6 +68,8 @@ case ${OPENIDC_VERSION} in
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.0"
+        ubuntu="ubuntu1"
+        cjosename=""
      ;;
    2.1.3|2.1.4|2.1.5|2.1.6) 
         if [ "${pack}" = "xenial" ]
@@ -64,6 +79,8 @@ case ${OPENIDC_VERSION} in
         fi
         CJOSE_VERSION="0.4.1"
         CJOSE_OPENIDC_DIST_VERSION="2.1.3"
+        ubuntu="ubuntu1"
+        cjosename=""
      ;;
     2.2.0)
         if [ "${pack}" = "xenial" ]
@@ -96,9 +113,9 @@ CJOSE_URL=""
 pack_list=""
 
 # set URLs
-OPENIDC_URL="https://github.com/pingidentity/mod_auth_openidc/releases/download/v${OPENIDC_VERSION}/libapache2-mod-auth-openidc_${OPENIDC_VERSION}-1ubuntu1.${pack}.1_amd64.deb"
+OPENIDC_URL="https://github.com/pingidentity/mod_auth_openidc/releases/download/v${OPENIDC_VERSION}/libapache2-mod-auth-openidc_${OPENIDC_VERSION}-1${ubuntu}.${pack}.1_amd64.deb"
 
-test ! -z "${CJOSE_VERSION}" && CJOSE_URL="https://github.com/pingidentity/mod_auth_openidc/releases/download/v${CJOSE_OPENIDC_DIST_VERSION}/libcjose_${CJOSE_VERSION}-1ubuntu1.${pack}.1_amd64.deb"
+test ! -z "${CJOSE_VERSION}" && CJOSE_URL="https://github.com/pingidentity/mod_auth_openidc/releases/download/v${CJOSE_OPENIDC_DIST_VERSION}/libcjose${cjosename}_${CJOSE_VERSION}-1${ubuntu}.${pack}.1_amd64.deb"
 
 # Download packages
 if [ ! -z "${OPENIDC_URL}" ]
