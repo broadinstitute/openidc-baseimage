@@ -6,10 +6,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     OPENIDC_VERSION=2.3.1 \
     PHUSION_BASEIMAGE=0.9.22
 
-ADD . /tmp/build
+COPY . /tmp/build
 
 RUN apt-get update && \
-    apt-get install -qy apache2 curl libjansson4 telnet && \
+    apt-get install -qy apache2 curl libjansson4 telnet tzdata && \
     /tmp/build/install-openidc.sh && \
     apt-get --only-upgrade -y install openssl && \
     mkdir -p /etc/service/apache2/supervise && \
