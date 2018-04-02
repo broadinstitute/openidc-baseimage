@@ -1,17 +1,18 @@
-FROM phusion/baseimage:0.9.22
+FROM broadinstitute/openidc-baseimage:bernick_phusion_18.04
 
 MAINTAINER Andrew Teixeira <teixeira@broadinstitute.org>
 
 ENV DEBIAN_FRONTEND=noninteractive \
     OPENIDC_VERSION=2.3.1 \
-    PHUSION_BASEIMAGE=0.9.22
+    PHUSION_BASEIMAGE=0.9.22 \
+    UBUNTU_BASEIMAGE=18.04
 
 COPY . /tmp/build
 
 RUN apt-get update && \
     apt-get install -qy apache2 curl libjansson4 telnet tzdata && \
     /tmp/build/install-openidc.sh && \
-    apt-get --only-upgrade -y install openssl && \
+    apt-get --only-upgrade -y install openssl ca-certificates && \
     mkdir -p /etc/service/apache2/supervise && \
     mkdir /app && \
     rm -rf /etc/service/sshd && \

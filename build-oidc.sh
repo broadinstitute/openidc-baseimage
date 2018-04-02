@@ -11,7 +11,7 @@ fi
 echo "Building mod_auth_openidc from source (${BRANCH})"
 
 echo "Installing dependencies"
-apt-get install -qy apache2-dev automake gcc git libapr1-dev \
+apt-get install -qy libcjose0 libcjose-dev apache2-dev automake gcc git libapr1-dev \
     libaprutil1-dev libcurl4-openssl-dev libjansson-dev libpcre3-dev libssl-dev \
     make pkg-config
 

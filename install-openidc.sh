@@ -7,6 +7,7 @@ set -xe
 
 OPENIDC_VERSION=${OPENIDC_VERSION:-""}
 PHUSION_BASEIMAGE=${PHUSION_BASEIMAGE:-""}
+UBUNTU_BASEIMAGE=${UBUNTU_BASEIMAGE:-""}
 # init var
 pack=""
 
@@ -21,6 +22,11 @@ case ${PHUSION_BASEIMAGE} in
    0.9.17|0.9.18) pack="trusty"
       ;;
    0.9.22|0.9.21|0.9.20|0.9.19) pack="xenial"
+      ;;
+esac
+
+case ${UBUNTU_BASEIMAGE} in
+   18.04) pack="bionic"
       ;;
 esac
 
@@ -135,10 +141,14 @@ fi
 test -z "${pack_list}" && echo "Missing openidc packages - ERROR" && exit 1
 
 echo "Installing packages for openidc"
+if [ "${pack}" = "bionic" ]
+then
+   sh /tmp/build/build-oidc.sh
+else
+  # since dpkg install will return non-zero due to not able to
+  # satisfy dependencies just yet need to add the echo to force zero exit status
+  dpkg -i ${pack_list} || echo
 
-# since dpkg install will return non-zero due to not able to
-# satisfy dependencies just yet need to add the echo to force zero exit status 
-dpkg -i ${pack_list} || echo
-
-# Now to satisfy dependencies need to run apt install command
-apt-get -f -y install
+  # Now to satisfy dependencies need to run apt install command
+  apt-get -f -y install
+fi
