@@ -1,7 +1,5 @@
 FROM phusion/baseimage:0.9.22
 
-MAINTAINER Andrew Teixeira <teixeira@broadinstitute.org>
-
 ENV DEBIAN_FRONTEND=noninteractive \
     OPENIDC_VERSION=2.3.1 \
     PHUSION_BASEIMAGE=0.9.22
@@ -24,6 +22,7 @@ RUN apt-get update && \
     mv /tmp/build/site.conf /etc/apache2/sites-available/site.conf && \
     mv /tmp/build/ca-bundle.crt /etc/ssl/certs/ca-bundle.crt && \
     /tmp/build/setup-apache.sh && \
+    mv /tmp/build/itsec.conf /etc/apache2/conf-available && \
     apt-get -yq autoremove && \
     apt-get -yq clean && \
     rm -rf /var/lib/apt/lists/* && \

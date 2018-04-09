@@ -57,7 +57,23 @@ The GitHub repository (https://github.com/broadinstitute/openidc-baseimage) for 
 
 ### Override script
 
-Since this container is inherited by several other sub-images, it has become necessary to allow sub-images to tweak Apache before starting up.  As such, we have created the ability to add in an `/etc/apache2/override.sh` script.  This script will be run after all the default actions in `/etc/service/apache2/run`, but before Apache itself is run.  Therefore, if sites need to be enabled/disabled, variables need to be checked or set, etc. that is different than what comes standard with this image, adding an `override.sh` script can do all that.  To see th specifics about where `override.sh` comes in the run order, check out the `run.sh` script in this repo.
+Since this container is inherited by several other sub-images, it has become necessary to allow sub-images to tweak Apache before starting up.  As such, we have created the ability to add in an `/etc/apache2/override.sh` script.  This script will be run after all the default actions in `/etc/service/apache2/run`, but before Apache itself is run.  Therefore, if sites need to be enabled/disabled, variables need to be checked or set, etc. that is different than what comes standard with this image, adding an `override.sh` script can do all that.  To see the specifics about where `override.sh` comes in the run order, check out the `run.sh` script in this repo.
+
+### More security!!
+To lock down Apache even more, we have some typical content restriction headers (X-Frame-Options, Content-Security-Policy, etc.) in an available configuration named __itsec__.  Therefore, if you build a new image from this image, you can activate the headers by adding the following to your `Dockerfile`:
+
+```bash
+RUN a2enconf itsec
+```
+
+The following are the headers that are set in this configuration:
+```
+Header always append X-Frame-Options SAMEORIGIN
+Header always set X-XSS-Protection "1; mode=block"
+Header always set X-Content-Type-Options: nosniff
+Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+```
 
 ### Mounted Volumes
 
