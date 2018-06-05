@@ -25,7 +25,7 @@ fi
 
 # update SERVER_ADMIN
 if [ -z "$SERVER_ADMIN" ] ; then
-    export SERVER_ADMIN=devops@broadinstitute.org
+    export SERVER_ADMIN=webmaster@example.org
 fi
 
 # update SERVER_NAME
