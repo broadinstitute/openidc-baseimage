@@ -1,4 +1,4 @@
-FROM broadinstitute/openidc-baseimage:bernick_phusion_18.04
+FROM phusion/baseimage:master
 
 MAINTAINER Andrew Teixeira <teixeira@broadinstitute.org>
 
