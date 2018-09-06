@@ -1,10 +1,10 @@
-FROM phusion/baseimage:master
+FROM phusion/baseimage:0.11
 
 MAINTAINER Andrew Teixeira <teixeira@broadinstitute.org>
 
 ENV DEBIAN_FRONTEND=noninteractive \
     OPENIDC_VERSION=2.3.1 \
-    PHUSION_BASEIMAGE=0.9.22 \
+    PHUSION_BASEIMAGE=0.11 \
     UBUNTU_BASEIMAGE=18.04
 
 COPY . /tmp/build
