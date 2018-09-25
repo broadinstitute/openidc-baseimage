@@ -13,6 +13,6 @@ a2enmod auth_openidc headers rewrite proxy proxy_http socache_shmcb ssl
 
 # Generate a snakeoil certificate in case it's needed
 openssl req -newkey rsa:4096 -days 365 -nodes -x509 \
-    -subj "/C=US/ST=Massachusetts/L=Cambridge/O=Broad Institute/OU=BITS DevOps/CN=localhost/emailAddress=devops@broadinstitute.org" \
+    -subj "/C=US/ST=Massachusetts/L=Cambridge/O=Random Bits/OU=Widgets/CN=localhost/emailAddress=webmaster@example.org" \
     -keyout /etc/ssl/private/server.key \
     -out /etc/ssl/certs/server.crt
