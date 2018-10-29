@@ -74,7 +74,9 @@ fi
 
 # update CALLBACK_PATH
 if [ -z "$CALLBACK_PATH" ] ; then
-    export CALLBACK_PATH=/`echo $CALLBACK_URI | rev | cut -d/ -f1 | rev`
+    # shellcheck disable=SC2006
+    CALLBACK_PATH=/`echo $CALLBACK_URI | rev | cut -d/ -f1 | rev`
+    export CALLBACK_PATH
 fi
 
 # set httpd port
@@ -144,6 +146,7 @@ fi
 
 # If there is an override script, pull it in
 if [ -f "${OVERRIDE_SCRIPT}" ]; then
+    # shellcheck disable=SC1090
     . $OVERRIDE_SCRIPT
 fi
 

@@ -21,7 +21,6 @@ RUN apt-get update && \
     mv /tmp/build/auth_openidc.conf /etc/apache2/mods-available && \
     mv /tmp/build/ports.conf /etc/apache2/ports.conf && \
     mv /tmp/build/site.conf /etc/apache2/sites-available/site.conf && \
-    mv /tmp/build/ca-bundle.crt /etc/ssl/certs/ca-bundle.crt && \
     /tmp/build/setup-apache.sh && \
     mv /tmp/build/itsec.conf /etc/apache2/conf-available && \
     apt-get -yq autoremove && \
