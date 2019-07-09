@@ -1,15 +1,15 @@
 FROM phusion/baseimage:0.11
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    OPENIDC_VERSION=2.3.1 \
+    OPENIDC_VERSION=2.3.11 \
     PHUSION_BASEIMAGE=0.11 \
-    TCELL_VER=2.0.2 \
-    UBUNTU_BASEIMAGE=18.04
+    TCELL_VER=2.0.2
 
 COPY . /tmp/build
 
 RUN apt-get update && \
-    apt-get install -qy apache2 curl libjansson4 telnet tzdata && \
+    apt-get upgrade -yq && \
+    apt-get install -qy --no-install-recommends apache2 curl libjansson4 telnet tzdata && \
     /tmp/build/install-openidc.sh && \
     apt-get --only-upgrade -y install openssl ca-certificates && \
     mkdir -p /etc/service/apache2/supervise && \
