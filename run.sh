@@ -150,6 +150,11 @@ if [ -f "${OVERRIDE_SCRIPT}" ]; then
     . $OVERRIDE_SCRIPT
 fi
 
+ENABLE_TCELL="${ENABLE_TCELL:-no}"
+if [ "$ENABLE_TCELL" = "yes" ]; then
+    a2enmod agenttcell
+fi
+
 # Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid
 

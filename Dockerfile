@@ -3,6 +3,7 @@ FROM phusion/baseimage:0.11
 ENV DEBIAN_FRONTEND=noninteractive \
     OPENIDC_VERSION=2.3.1 \
     PHUSION_BASEIMAGE=0.11 \
+    TCELL_VER=2.0.2 \
     UBUNTU_BASEIMAGE=18.04
 
 COPY . /tmp/build
@@ -20,8 +21,12 @@ RUN apt-get update && \
     mv /tmp/build/auth_openidc.load /etc/apache2/mods-available && \
     mv /tmp/build/auth_openidc.conf /etc/apache2/mods-available && \
     mv /tmp/build/ports.conf /etc/apache2/ports.conf && \
+    mv /tmp/build/agenttcell.load /etc/apache2/mods-available/agenttcell.load && \
     mv /tmp/build/site.conf /etc/apache2/sites-available/site.conf && \
     /tmp/build/setup-apache.sh && \
+    curl -L -o /tmp/apache24_tcellagent-${TCELL_VER}-linux-x86_64.tgz https://static.tcell.io/downloads/apacheagent/apache24_tcellagent-${TCELL_VER}-linux-x86_64.tgz && \
+    tar -C /tmp -xz --strip-components=1 -f /tmp/apache24_tcellagent-${TCELL_VER}-linux-x86_64.tgz && \
+    cp /tmp/ubuntu/*.so /usr/lib/apache2/modules/ && \
     mv /tmp/build/itsec.conf /etc/apache2/conf-available && \
     apt-get -yq autoremove && \
     apt-get -yq clean && \
