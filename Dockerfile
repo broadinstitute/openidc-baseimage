@@ -27,6 +27,7 @@ RUN apt-get update && \
     curl -L -o /tmp/apache24_tcellagent-${TCELL_VER}-linux-x86_64.tgz https://static.tcell.io/downloads/apacheagent/apache24_tcellagent-${TCELL_VER}-linux-x86_64.tgz && \
     tar -C /tmp -xz --strip-components=1 -f /tmp/apache24_tcellagent-${TCELL_VER}-linux-x86_64.tgz && \
     cp /tmp/ubuntu/*.so /usr/lib/apache2/modules/ && \
+    chmod 0644 /usr/lib/apache2/modules/*.so && \
     mv /tmp/build/itsec.conf /etc/apache2/conf-available && \
     apt-get -yq autoremove && \
     apt-get -yq clean && \

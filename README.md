@@ -28,6 +28,7 @@ The environment variables recognized by the container are as follows:
 * CLIENTSECRET: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * ENABLE_TCELL: Enable the [tCell][5] module for Apache.  Default: __no__
   * **Note**: For [tCell][5] to function, it needs a configuration file as described [https://docs.tcell.io/docs/server-agent-options](here).  That configuration file needs to be volume mounted into the container at `/etc/apache2/tcell_agent.config`.
+* ENABLE_WEBSOCKET: Set to __yes__ to enable websocket/wstunnel module. Default: Not set (so not enabled)
 * HTTPD_PORT: The non-SSL port on which to run Apache.  Default: __80__
 * LOG_LEVEL: The logging level for Apache.  Default: __warn__
 * OIDC_COOKIE: The name of the OIDC cookie to set for the session.  Default: __prometheus_session__
