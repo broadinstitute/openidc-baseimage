@@ -10,7 +10,7 @@ This repo contains the configuration for a Docker image, based on [Phusion Basei
 
 ## Google preparation for OpenIDC
 
-Certain steps need to be finished in Google before one can start this container successfully.  Firstly, one must create a Google Project at [https://console.developers.google.com/](https://console.developers.google.com/).  After the project has been created, you must click on the `APIs & auth` menu item, then click `Credentials`.  For the OpenIDC module to work, you will need to click on the `Create new Client ID` button and create a new `Web application`.  You will then need the *Client ID* and *Client Secret* values for further configuration of the container.  You will also eventually need to add add the `Redirect URIs` and `JavaScript origins` to this new Client ID that will correspond to the location of this container.  The `Redirect URI` on the container defaults to **ht&#8203;tps://${SERVER_NAME}/oauth2callback**, so if you keep the default, you should be able to just substitute in the hostname of the server to get the redirect URI working.
+Certain steps need to be finished in Google before one can start this container successfully.  Firstly, one must create a Google Project at [https://console.developers.google.com/](https://console.developers.google.com/).  After the project has been created, you must click on the `APIs & auth` menu item, then click `Credentials`.  For the OpenIDC module to work, you will need to click on the `Create new Client ID` button and create a new `Web application`.  You will then need the *Client ID* and *Client Secret* values for further configuration of the container.  You will also eventually need to add add the `Redirect URIs` and `JavaScript origins` to this new Client ID that will correspond to the location of this container.  The `Redirect URI` on the container defaults to __ht&#8203;tps://${SERVER_NAME}/oauth2callback__, so if you keep the default, you should be able to just substitute in the hostname of the server to get the redirect URI working.
 
 ## Quick Start
 
@@ -27,8 +27,10 @@ The environment variables recognized by the container are as follows:
 * CLIENTID: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * CLIENTSECRET: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * ENABLE_TCELL: Enable the [tCell][5] module for Apache.  Default: __no__
-  * **Note**: For [tCell][5] to function, it needs a configuration file as described [https://docs.tcell.io/docs/server-agent-options](here).  That configuration file needs to be volume mounted into the container at `/etc/apache2/tcell_agent.config`.
+  * __Note__: For [tCell][5] to function, it needs a configuration file as described [https://docs.tcell.io/docs/server-agent-options](here).  That configuration file needs to be volume mounted into the container at `/etc/apache2/tcell_agent.config`.
 * ENABLE_WEBSOCKET: Set to __yes__ to enable websocket/wstunnel module. Default: Not set (so not enabled)
+* ENVFILE: Set the path to an environment variable override file in the container.  Default: __/etc/apache2/env-override__.
+  * __Note__: If the file at this path in the container does not exist, the container will just ignore this setting.
 * HTTPD_PORT: The non-SSL port on which to run Apache.  Default: __80__
 * LOG_LEVEL: The logging level for Apache.  Default: __warn__
 * OIDC_COOKIE: The name of the OIDC cookie to set for the session.  Default: __prometheus_session__
@@ -61,7 +63,7 @@ docker run -it --rm --name apacheoidc --hostname test.example.org \
     broadinstitute/openidc-baseimage:latest
 ```
 
-**Note: This container also redirects all traffic from the non-SSL port to the SSL port to make sure all communication happens over an encrypted channel.**
+__Note: This container also redirects all traffic from the non-SSL port to the SSL port to make sure all communication happens over an encrypted channel.__
 
 ### docker-compose Example with tCell
 
