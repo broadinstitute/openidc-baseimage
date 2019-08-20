@@ -39,6 +39,8 @@ The environment variables recognized by the container are as follows:
 * PROXY_PATH: The Apache `Location` to configure without authentication.  Default: __/__
 * PROXY_PATH2: The Apache `Location` to configure with OAuth2.0 authentication, which will require a valid Google token to access.  Default: __/api__
 * PROXY_TIMEOUT: The Apache `ProxyTimeout` to configure timeout for proxies globally.  Default: __300__
+* PROXY_URL: The URL to which we should proxy for *PROXY_PATH*.  Default: __ht&#8203;tp://app:8080/__
+* PROXY_URL2: The URL to which we should proxy for *PROXY_PATH2*.  Default: __ht&#8203;tp://app:8080/api__
 * REMOTE_USER_CLAIM: The OIDC configuration variable OIDCRemoteUserClaim setting.  Default: __email__
 * SERVER_ADMIN: The email address to use in Apache for the `ServerAdmin` value.  Default: __webmaster@example.org__
 * SERVER_NAME: The hostname to use in Apache for the `ServerName` value.  Default: __localhost__
