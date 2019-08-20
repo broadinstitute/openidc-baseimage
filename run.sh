@@ -155,6 +155,15 @@ if [ "$ENABLE_WEBSOCKET" = 'yes' ]; then
     a2enmod proxy_wstunnel
 fi
 
+# Instead setting values via environment variables you can put them in the following file
+# Location of environment variable settings:
+ENVFILE="${ENVFILE:-/etc/apache2/env-override}"
+# If there is an override script, pull it in
+if [ -f "$ENVFILE" ]; then
+    # shellcheck disable=SC1090
+    . $ENVFILE
+fi
+
 # If there is an override script, pull it in
 if [ -f "${OVERRIDE_SCRIPT}" ]; then
     # shellcheck disable=SC1090
