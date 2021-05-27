@@ -9,7 +9,7 @@ a2dissite 000-default
 # Enable custom site
 a2ensite site
 # Enable required modules
-a2enmod auth_openidc headers rewrite proxy proxy_http socache_shmcb ssl
+a2enmod oauth2 headers rewrite proxy proxy_http socache_shmcb ssl
 
 # Generate a snakeoil certificate in case it's needed
 openssl req -newkey rsa:4096 -days 365 -nodes -x509 \

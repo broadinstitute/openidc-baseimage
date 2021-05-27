@@ -1,0 +1,1 @@
+LoadModule oauth2_module /usr/lib/apache2/modules/mod_oauth2.so
