@@ -21,7 +21,7 @@ The environment variables recognized by the container are as follows:
 * AUTH_REQUIRE: An OIDC claim to restrict access on *PROXY_PATH*.  Default: __Require all granted__
 * AUTH_REQUIRE2: An OIDC claim to restrict access on *PROXY_PATH2*.  Default: __Require valid-user__
 * AUTH_TYPE: The AuthType to use for *PROXY_PATH*.  Default: __AuthType None__
-* AUTH_TYPE2: The AuthType to use for *PROXY_PATH2*.  Default: __AuthType oauth20__
+* AUTH_TYPE2: The AuthType to use for *PROXY_PATH2*.  Default: __AuthType oauth2__
 * CALLBACK_PATH: Just the path to the callback URI, used by Apache to setup a `Location` tag.  Defaults to the path following the hostname in `CALLBACK_URI`
 * CALLBACK_URI: The fully qualified callback URI.  Default: __ht&#8203;tps://SERVER_NAME/oauth2callback__
 * CLIENTID: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.

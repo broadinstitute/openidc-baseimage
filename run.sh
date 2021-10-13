@@ -64,7 +64,7 @@ fi
 
 # update AUTH_TYPE2
 if [ -z "$AUTH_TYPE2" ] ; then
-    export AUTH_TYPE2='AuthType oauth20'
+    export AUTH_TYPE2='AuthType oauth2'
 fi
 
 # update CALLBACK_URI
