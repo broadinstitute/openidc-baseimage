@@ -145,11 +145,6 @@ if [ -z "$SSL_CIPHER_SUITE" ] ; then
 fi
 
 ### Common modules to enable ###
-ENABLE_TCELL="${ENABLE_TCELL:-no}"
-if [ "$ENABLE_TCELL" = 'yes' ]; then
-    a2enmod agenttcell
-fi
-
 ENABLE_WEBSOCKET="${ENABLE_WEBSOCKET:-no}"
 if [ "$ENABLE_WEBSOCKET" = 'yes' ]; then
     a2enmod proxy_wstunnel

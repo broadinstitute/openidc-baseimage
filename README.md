@@ -26,8 +26,6 @@ The environment variables recognized by the container are as follows:
 * CALLBACK_URI: The fully qualified callback URI.  Default: __ht&#8203;tps://SERVER_NAME/oauth2callback__
 * CLIENTID: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
 * CLIENTSECRET: __Required parameter for openidc-connect__.  The Client ID received from the Google Cloud Console in previous steps. The container will fail to launch if this value is not set.
-* ENABLE_TCELL: Enable the [tCell][5] module for Apache.  Default: __no__
-  * __Note__: For [tCell][5] to function, it needs a configuration file as described [https://docs.tcell.io/docs/server-agent-options](here).  That configuration file needs to be volume mounted into the container at `/etc/apache2/tcell_agent.config`.
 * ENABLE_WEBSOCKET: Set to __yes__ to enable websocket/wstunnel module. Default: Not set (so not enabled)
 * ENVFILE: Set the path to an environment variable override file in the container.  Default: __/etc/apache2/env-override__.
   * __Note__: If the file at this path in the container does not exist, the container will just ignore this setting.
@@ -67,9 +65,9 @@ docker run -it --rm --name apacheoidc --hostname test.example.org \
 
 __Note: This container also redirects all traffic from the non-SSL port to the SSL port to make sure all communication happens over an encrypted channel.__
 
-### docker-compose Example with tCell
+### docker-compose Example
 
-The GitHub repository [https://github.com/broadinstitute/openidc-baseimage](https://github.com/broadinstitute/openidc-baseimage) for this container also contains a [Docker Compose][4] YAML file that you can use as a template to build an OpenIDC container without the super long `docker run` line.  Here is an example `docker-compose.yml` file with [tCell][5] enabled:
+The GitHub repository [https://github.com/broadinstitute/openidc-baseimage](https://github.com/broadinstitute/openidc-baseimage) for this container also contains a [Docker Compose][4] YAML file that you can use as a template to build an OpenIDC container without the super long `docker run` line.  Here is an example `docker-compose.yml` file:
 
 ```yaml
 apache:
@@ -82,7 +80,6 @@ apache:
     CALLBACK_URI: https://test.example.org
     CLIENTID: replacewithclientid
     CLIENTSECRET: replacewithclientsecret
-    ENABLE_TCELL: 'yes'
     OIDC_CLAIM: Require claim hd:example.org
     OIDC_COOKIE: example_session
     OIDC_SCOPES: openid email profile test
@@ -90,8 +87,6 @@ apache:
     PROXY_PATH2: /api
     SERVER_ADMIN: webmaster@example.org
     SERVER_NAME: test.example.org
-  volumes:
-    - /path/to/tcell/config.cfg:/etc/apache2/tcell_agent.config:ro
   hostname: test.example.org
 ```
 
@@ -160,4 +155,3 @@ Built using the [Phusion Baseimage][1] container image.
 [2]: http://httpd.apache.org/ "Apache"
 [3]: https://github.com/pingidentity/mod_auth_openidc "mod_auth_openidc"
 [4]: https://docs.docker.com/compose/ "Docker Compose"
-[5]: https://earlyaccess.rapid7.com/tcell/ "tCell"
